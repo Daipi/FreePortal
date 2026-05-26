@@ -245,9 +245,15 @@
         3. Mailchimp: Use their hosted form or embed code
         4. Tally.so: Free form builder, embed via iframe
       -->
-      <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <form
+        id="waitlist-form"
+        action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID"
+        method="POST"
+        class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+      >
         <input
           type="email"
+          name="email"
           id="email-input"
           placeholder="you@example.com"
           required
@@ -258,10 +264,6 @@
         </button>
       </form>
       <p id="form-message" class="text-sm mt-4 hidden"></p>
-
-      <p class="text-sm text-gray-400 mt-6">
-        No spam, ever. Unsubscribe anytime.
-      </p>
     </div>
   </section>
 
@@ -279,28 +281,36 @@
   <script>
     const form = document.getElementById('waitlist-form');
     const msg = document.getElementById('form-message');
+    const emailInput = document.getElementById('email-input');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const email = document.getElementById('email-input').value;
+      const data = new FormData(form);
+      const actionUrl = form.getAttribute('action');
 
-      // TODO: Replace this with your email collection service.
-      // Options (all free tiers available):
-      //
-      // 1. Formspree:  action="https://formspree.io/f/YOUR_FORM_ID" on the <form> tag
-      // 2. Google Forms: Replace entire form with an embedded Google Form iframe
-      // 3. Mailchimp: Use their signup form embed code
-      // 4. Tally.so: Free, no-code form builder
-      // 5. Supabase: Insert into a "waitlist" table (if you set up Supabase)
-      //
-      // For now, this shows a success message and logs to console.
-      // Replace the below 4 lines with your actual email collection logic.
+      msg.className = 'text-sm mt-4 text-gray-500';
+      msg.classList.remove('hidden', 'text-green-600', 'text-red-600');
+      msg.textContent = 'Submitting...';
 
-      console.log('Waitlist signup:', email);
-      msg.textContent = "Thanks! You're on the list. We'll reach out soon.";
-      msg.className = 'text-sm mt-4 text-green-600';
-      msg.classList.remove('hidden');
-      document.getElementById('email-input').value = '';
+      fetch(actionUrl, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          msg.className = 'text-sm mt-4 text-green-600';
+          msg.textContent = "You're on the list! We'll reach out when we launch.";
+          emailInput.value = '';
+        } else {
+          response.json().then(function(data) {
+            msg.className = 'text-sm mt-4 text-red-600';
+            msg.textContent = data.error || 'Something went wrong. Please try again.';
+          });
+        }
+      }).catch(function() {
+        msg.className = 'text-sm mt-4 text-red-600';
+        msg.textContent = 'Network error. Please try again.';
+      });
     });
   </script>
 
