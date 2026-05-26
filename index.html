@@ -245,25 +245,22 @@
         3. Mailchimp: Use their hosted form or embed code
         4. Tally.so: Free form builder, embed via iframe
       -->
-      <form
-        id="waitlist-form"
-        action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID"
-        method="POST"
-        class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-      >
+      <form id="waitlist-form" action="https://formspree.io/f/xeedrdbz" method="POST" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
         <input
           type="email"
           name="email"
           id="email-input"
           placeholder="you@example.com"
+          data-fs-field
           required
           class="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
         >
-        <button type="submit" class="gradient-bg text-white font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition whitespace-nowrap">
+        <button type="submit" data-fs-submit-btn class="gradient-bg text-white font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition whitespace-nowrap">
           Join Waitlist
         </button>
       </form>
-      <p id="form-message" class="text-sm mt-4 hidden"></p>
+      <div data-fs-success class="text-sm mt-4 text-green-600 hidden">You're on the list! We'll reach out when we launch.</div>
+      <div data-fs-error class="text-sm mt-4 text-red-600 hidden"></div>
     </div>
   </section>
 
@@ -279,40 +276,10 @@
   </footer>
 
   <script>
-    const form = document.getElementById('waitlist-form');
-    const msg = document.getElementById('form-message');
-    const emailInput = document.getElementById('email-input');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      const actionUrl = form.getAttribute('action');
-
-      msg.className = 'text-sm mt-4 text-gray-500';
-      msg.classList.remove('hidden', 'text-green-600', 'text-red-600');
-      msg.textContent = 'Submitting...';
-
-      fetch(actionUrl, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(function(response) {
-        if (response.ok) {
-          msg.className = 'text-sm mt-4 text-green-600';
-          msg.textContent = "You're on the list! We'll reach out when we launch.";
-          emailInput.value = '';
-        } else {
-          response.json().then(function(data) {
-            msg.className = 'text-sm mt-4 text-red-600';
-            msg.textContent = data.error || 'Something went wrong. Please try again.';
-          });
-        }
-      }).catch(function() {
-        msg.className = 'text-sm mt-4 text-red-600';
-        msg.textContent = 'Network error. Please try again.';
-      });
-    });
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#waitlist-form', formId: 'xeedrdbz' });
   </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
