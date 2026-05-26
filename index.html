@@ -8,20 +8,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } };
+  </script>
   <style>
-    body { font-family: 'Inter', sans-serif; }
     .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
     .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   </style>
 </head>
-<body class="bg-white text-gray-900">
+<body class="font-sans bg-white text-gray-900 antialiased">
 
   <!-- Nav -->
   <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-    <div class="text-xl font-bold">
-      <span class="gradient-text">FreePortal</span>
-    </div>
-    <a href="#waitlist" class="text-sm font-medium text-gray-600 hover:text-gray-900">Join Waitlist</a>
+    <div class="text-xl font-bold gradient-text">FreePortal</div>
+    <a href="#waitlist" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Join Waitlist</a>
   </nav>
 
   <!-- Hero -->
@@ -29,7 +29,7 @@
     <div class="inline-block bg-purple-50 text-purple-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
       For freelancers who hate admin work
     </div>
-    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6">
+    <h1 class="text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6">
       Your clients deserve a<br><span class="gradient-text">better way to stay updated</span>
     </h1>
     <p class="text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -49,21 +49,21 @@
       <p class="text-lg text-gray-500 text-center mb-14">You're spending 5+ hours a week on non-billable work</p>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <div class="text-3xl mb-4">
+          <div class="mb-4">
             <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
           </div>
           <h3 class="font-semibold text-lg mb-2">"Did you finish the logo?"</h3>
           <p class="text-gray-500">Clients keep emailing for updates. You waste time writing the same status over and over.</p>
         </div>
         <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <div class="text-3xl mb-4">
+          <div class="mb-4">
             <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
           </div>
           <h3 class="font-semibold text-lg mb-2">"Which version is final_v3_FINAL?"</h3>
           <p class="text-gray-500">Files buried in email threads. Clients reviewing the wrong version. Feedback scattered across WeChat, Slack, and email.</p>
         </div>
         <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <div class="text-3xl mb-4">
+          <div class="mb-4">
             <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
           <h3 class="font-semibold text-lg mb-2">"Still waiting on your approval..."</h3>
@@ -178,7 +178,7 @@
               <td class="text-center px-4 py-4 text-green-500">Yes</td>
               <td class="text-center px-4 py-4 text-green-500">Yes</td>
               <td class="text-center px-4 py-4 text-green-500">Yes</td>
-              <td class="text-center px-4 py-4 text-red-400">Too heavy & expensive</td>
+              <td class="text-center px-4 py-4 text-red-400">Too heavy &amp; expensive</td>
             </tr>
             <tr class="bg-purple-50">
               <td class="px-6 py-4 font-bold text-purple-700">FreePortal</td>
@@ -193,7 +193,7 @@
     </div>
   </section>
 
-  <!-- Pricing preview -->
+  <!-- Pricing -->
   <section class="bg-gray-50 py-20">
     <div class="max-w-3xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple pricing</h2>
@@ -207,7 +207,7 @@
             <li class="flex gap-2"><span class="text-green-500">&#10003;</span> 1 project</li>
             <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Unlimited clients</li>
             <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Progress timeline</li>
-            <li class="flex gap-2"><span class="text-green-500">&#10003;</span> File delivery & review</li>
+            <li class="flex gap-2"><span class="text-green-500">&#10003;</span> File delivery &amp; review</li>
             <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Payment tracking</li>
           </ul>
         </div>
@@ -236,15 +236,6 @@
         We're launching soon. Join the waitlist to be first in line
         and lock in founding member pricing for life.
       </p>
-
-      <!--
-        EMAIL COLLECTION SETUP:
-        This form needs a backend to capture emails. Here are easy options:
-        1. Google Forms: Replace the form below with an embedded Google Form
-        2. Formspree (free): Change action to "https://formspree.io/f/YOUR_ID"
-        3. Mailchimp: Use their hosted form or embed code
-        4. Tally.so: Free form builder, embed via iframe
-      -->
       <form id="waitlist-form" action="https://formspree.io/f/xeedrdbz" method="POST" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
         <input
           type="email"
@@ -261,6 +252,7 @@
       </form>
       <div data-fs-success class="text-sm mt-4 text-green-600 hidden">You're on the list! We'll reach out when we launch.</div>
       <div data-fs-error class="text-sm mt-4 text-red-600 hidden"></div>
+      <p class="text-sm text-gray-400 mt-6">No spam, ever. Unsubscribe anytime.</p>
     </div>
   </section>
 
@@ -269,8 +261,8 @@
     <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <span class="text-sm text-gray-400">&copy; 2026 FreePortal</span>
       <div class="flex gap-6 text-sm text-gray-400">
-        <a href="mailto:hello@freeportal.app" class="hover:text-gray-600">Contact</a>
-        <a href="https://twitter.com" target="_blank" rel="noopener" class="hover:text-gray-600">Twitter / X</a>
+        <a href="mailto:hello@freeportal.app" class="hover:text-gray-600 transition">Contact</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" class="hover:text-gray-600 transition">Twitter / X</a>
       </div>
     </div>
   </footer>
